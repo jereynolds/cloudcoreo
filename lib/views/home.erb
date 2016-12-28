@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>CloudCoreo Coding Challenge</title>
+  </head>
+  <body>
+    <h4>
+      Enter two values to find one prime in <i>e</i>
+    </h4>
+    <div>
+      <form method="POST" action="/tuple">
+        Length: <input type="text" name="length"><br>
+        Location: <input type="location" name="location"><br>
+        <br>
+        <input type="submit" name="submit" value="Submit">
+      </form>
+    </div>
+    <h4>
+      Upload a .csv file with pairs of values to find many primes in <i>e</i>
+    </h4>
+    <div>
+      <form method="POST" action="/file">
+        <input type="file" name="csv" accept="text/csv"><br>
+        <input type="submit" name="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>
