@@ -20,6 +20,10 @@ class EulerCalc
     end
   end
 
+  def digits
+    @@digits
+  end
+
   private
 
   # Run one iteration of the spigot algorithm
