@@ -20,6 +20,24 @@ class EulerCalc
     end
   end
 
+  # Return the integer representation of a string of digits
+  # location is 0-indexed
+  def substring(first, length)
+    number = 0
+    last = first + length
+
+    if (last > digits.length)
+      generate(last - digits.length)
+    end
+
+    digits[first...last].each do |digit|
+      number *= 10
+      number += Integer(digit)
+    end
+
+    number
+  end
+
   def digits
     @@digits
   end
