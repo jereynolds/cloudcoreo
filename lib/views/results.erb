@@ -1,5 +1,22 @@
 <html>
   <body>
-    Results.
+    <p>
+      Results:<br>
+      <% @results.each do |result| %>
+        <div>
+          <%= result %>
+        </div>
+      <% end %>
+      <br>
+    </p>
+
+    </p>
+      Jobs:<br>
+      <% @jobs.each do |job| %>
+        <div>
+          <%= job %>
+        </div>
+      <% end %>
+    </p>
   </body>
 </html>

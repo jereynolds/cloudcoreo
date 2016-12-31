@@ -1,7 +1,12 @@
 require 'thread'
 
 class JobWorkerPool
-  attr_reader :worker_count, :job_queue, :results_lock, :results_hash
+  attr_reader :worker_count,
+              :job_queue,
+              :job_list,
+              :job_list_lock,
+              :results_lock,
+              :results_hash
 
   def self.start(*args)
     new(*args).tap(&:start)
@@ -10,8 +15,10 @@ class JobWorkerPool
   def initialize(worker_count)
     @worker_count = worker_count
     @job_queue = Queue.new
-    @results_lock = Mutex.new
+    @job_list = []
+    @job_list_lock = Mutex.new
     @results_hash = {}
+    @results_lock = Mutex.new
   end
 
   def start
@@ -28,6 +35,11 @@ class JobWorkerPool
 
   def add_job(job)
     job_queue.enq(job)
+
+    job_list_lock.synchronize do
+      job_list.push(job.key)
+    end
+
     job
   end
 
@@ -45,6 +57,10 @@ class JobWorkerPool
 
       results_lock.synchronize do
         results_hash[job.key] = job.result
+      end
+
+      job_list_lock.synchronize do
+        job_list.delete(job.key)
       end
     end
   end

@@ -6,8 +6,11 @@ class Server < Sinatra::Base
   configure :production, :development, :test do
     enable :logging
 
-    @@worker_pool = JobWorkerPool.start(THREAD_POOL_SIZE)
+    set :root, File.join(File.dirname(__FILE__), "lib")
+    set :views, File.join(root, "views")
   end
+
+  @@worker_pool = JobWorkerPool.start(THREAD_POOL_SIZE)
 
   get '/' do
     erb :home
@@ -15,6 +18,9 @@ class Server < Sinatra::Base
 
   post '/calculate' do
     if create_job(params[:location], params[:length])
+      @jobs = @@worker_pool.job_list
+      @results = @@worker_pool.results_hash
+
       erb :results
     else
       erb :invalid
@@ -25,6 +31,10 @@ class Server < Sinatra::Base
   end
 
   get '/status' do
+    @jobs = @@worker_pool.job_list
+    @results = @@worker_pool.results_hash
+
+    erb :results
   end
 
   private
