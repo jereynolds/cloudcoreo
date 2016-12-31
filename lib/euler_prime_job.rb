@@ -2,21 +2,26 @@ class EulerPrimeJob
   attr_reader :length, :location, :result, :key
 
   def initialize(location, length)
-    @key = [location, length]
-
-    @location = Integer(location) rescue nil
-    @length = Integer(length) rescue nil
-
     @euler = EulerCalc.new
     @pc = PrimeChecker.new
 
-    @result = { :prime => nil, :position => nil }
+    @key = "#{length}|#{location}"
+    @length = Integer(length) rescue nil
+    @location = Integer(location) rescue nil
     @completed = false
+
+    @result = {
+      :key => key,
+      :location => location,
+      :length => length
+    }
 
     validate
   end
 
   def execute
+    return nil unless valid?
+
     current_position = 0
     primes_found = 0
     candidate = -1
