@@ -40,10 +40,12 @@ class JobWorkerPool
   end
 
   def perform(job)
-    job.calculate!
+    unless job.completed?
+      job.execute
 
-    results_lock.synchronize do
-      results_hash[job.key] = job.result
+      results_lock.synchronize do
+        results_hash[job.key] = job.result
+      end
     end
   end
 end
