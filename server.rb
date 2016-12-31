@@ -1,3 +1,5 @@
+require './boot'
+
 class Server < Sinatra::Base
   THREAD_POOL_SIZE = 1
 
@@ -17,6 +19,12 @@ class Server < Sinatra::Base
     else
       erb :invalid
     end
+  end
+
+  post '/csv' do
+  end
+
+  get '/status' do
   end
 
   private

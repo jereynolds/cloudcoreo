@@ -1,3 +1,3 @@
-require './app'
+require './server'
 
 Server.run!

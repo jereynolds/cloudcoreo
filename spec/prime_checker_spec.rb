@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'prime_checker'
 
 describe PrimeChecker do
   describe "#check" do
