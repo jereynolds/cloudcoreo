@@ -5,7 +5,7 @@ class EulerPrimeJob
     @euler = EulerCalc.new
     @pc = PrimeChecker.new
 
-    @key = "#{length}|#{location}"
+    @key = { :length => length, :location => location }
     @length = Integer(length) rescue nil
     @location = Integer(location) rescue nil
     @completed = false

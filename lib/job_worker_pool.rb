@@ -1,4 +1,5 @@
 require 'thread'
+require 'set'
 
 class JobWorkerPool
   attr_reader :worker_count,
@@ -15,7 +16,7 @@ class JobWorkerPool
   def initialize(worker_count)
     @worker_count = worker_count
     @job_queue = Queue.new
-    @job_list = []
+    @job_list = Set.new
     @job_list_lock = Mutex.new
     @results_hash = {}
     @results_lock = Mutex.new
@@ -37,7 +38,7 @@ class JobWorkerPool
     job_queue.enq(job)
 
     job_list_lock.synchronize do
-      job_list.push(job.key)
+      job_list.add(job.key)
     end
 
     job

@@ -1,13 +1,14 @@
 require './boot'
 
 class Server < Sinatra::Base
-  THREAD_POOL_SIZE = 1
+  THREAD_POOL_SIZE = 5
 
   configure :production, :development, :test do
     enable :logging
 
-    set :root, File.join(File.dirname(__FILE__), "lib")
-    set :views, File.join(root, "views")
+    set :root, File.dirname(__FILE__)
+    set :views, File.join(root, "lib/views")
+    set :public_folder, File.join(root, "public")
   end
 
   @@worker_pool = JobWorkerPool.start(THREAD_POOL_SIZE)
@@ -16,11 +17,12 @@ class Server < Sinatra::Base
     erb :home
   end
 
+  get '/results' do
+    erb :results
+  end
+
   post '/calculate' do
     if create_job(params[:location], params[:length])
-      @jobs = @@worker_pool.job_list
-      @results = @@worker_pool.results_hash
-
       erb :results
     else
       erb :invalid
@@ -33,8 +35,7 @@ class Server < Sinatra::Base
   get '/status.json' do
     content_type :json
 
-    { :jobs => @@worker_pool.job_list,
-      :results => @@worker_pool.results_hash }.to_json
+    { :jobs => jobs, :results => results }.to_json
   end
 
   private
@@ -47,5 +48,13 @@ class Server < Sinatra::Base
     else
       nil
     end
+  end
+
+  def jobs
+    @jobs = @@worker_pool.job_list.to_a
+  end
+
+  def results
+    @results = @@worker_pool.results_hash
   end
 end

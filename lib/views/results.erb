@@ -1,22 +1,22 @@
 <html>
+  <head>
+    <title>Results</title>
+  </head>
   <body>
-    <p>
-      Results:<br>
-      <% @results.each do |result| %>
-        <div>
-          <%= result %>
-        </div>
-      <% end %>
-      <br>
-    </p>
+    <link rel="stylesheet", type="text/css", href="css/results.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/results.js"></script>
 
-    </p>
-      Jobs:<br>
-      <% @jobs.each do |job| %>
-        <div>
-          <%= job %>
-        </div>
-      <% end %>
-    </p>
+    <div>
+      <h4>Calculated Results:</h4>
+      <h5>Calculations may take awhile. This page will update with results as calculations complete.</h5>
+      <div id="results"></div>
+
+      <h4>Active and Pending Jobs:</h4>
+      <div id="jobs"></div>
+    </div><br>
+    <div>
+      <a href="/">Back</a>
+    </div>
   </body>
 </html>
