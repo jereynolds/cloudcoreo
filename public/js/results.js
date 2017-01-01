@@ -1,7 +1,7 @@
 "use strict"
 
 $(function() {
-  poll_refresh();
+  pollRefresh();
 });
 
 function pollRefresh() {
@@ -17,6 +17,7 @@ function pollRefresh() {
 function render(data, status) {
   drawResultTable(data.results);
   drawJobsTable(data.jobs);
+  $("#prime").text(data.max_prime)
 }
 
 function createTable(headers, rows) {

@@ -48,7 +48,7 @@ class Server < Sinatra::Base
   get '/status.json' do
     content_type :json
 
-    { :jobs => jobs, :results => results }.to_json
+    { :jobs => jobs, :results => results, :max_prime => max_prime }.to_json
   end
 
   private
@@ -61,6 +61,10 @@ class Server < Sinatra::Base
     else
       nil
     end
+  end
+
+  def max_prime
+    PrimeChecker.new.primes.max.to_s
   end
 
   def jobs
