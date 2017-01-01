@@ -18,8 +18,8 @@
       Upload a .csv file with pairs of values to find many primes in <i>e</i>
     </h4>
     <div>
-      <form method="POST" action="/file">
-        <input type="file" name="csv" accept="text/csv"><br>
+      <form method="POST" action="/csv" enctype="multipart/form-data">
+        <input type="file" name="csvfile" accept="text/csv"><br>
         <input type="submit" name="submit" value="Submit">
       </form>
     </div>

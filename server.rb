@@ -30,6 +30,19 @@ class Server < Sinatra::Base
   end
 
   post '/csv' do
+    success = true
+
+    CSV.parse(params["csvfile"][:tempfile]) do |row|
+      unless create_job(row[0], row[1])
+        success = false
+      end
+    end
+
+    if success
+      erb :results
+    else
+      erb :invalid
+    end
   end
 
   get '/status.json' do
