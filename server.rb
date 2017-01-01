@@ -30,11 +30,11 @@ class Server < Sinatra::Base
   post '/csv' do
   end
 
-  get '/status' do
-    @jobs = @@worker_pool.job_list
-    @results = @@worker_pool.results_hash
+  get '/status.json' do
+    content_type :json
 
-    erb :results
+    { :jobs => @@worker_pool.job_list,
+      :results => @@worker_pool.results_hash }.to_json
   end
 
   private
