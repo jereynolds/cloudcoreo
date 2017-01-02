@@ -1,6 +1,5 @@
 class PrimeChecker
   @@primes = SortedSet.new([2, 3])
-
   @@next_to_check = @@primes.max + 2
   @@next_lock = Mutex.new
 
@@ -14,6 +13,11 @@ class PrimeChecker
     generate number if number >= @@next_to_check
 
     @@primes.include? number
+  end
+
+  def reset
+    @@primes = SortedSet.new([2, 3])
+    @@next_to_check = @@primes.max + 2
   end
 
 private

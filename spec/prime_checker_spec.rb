@@ -4,6 +4,7 @@ describe PrimeChecker do
   describe "#check" do
     before do
       @pc = PrimeChecker.new
+      @pc.reset
     end
 
     it "identifies a prime from the list" do
@@ -11,9 +12,8 @@ describe PrimeChecker do
     end
 
     it "extends the known primes list" do
-      expect(@pc.primes.length).to eq(2)
-
       @pc.check 11
+
       expect(@pc.primes.length).to eq(5)
     end
   end
