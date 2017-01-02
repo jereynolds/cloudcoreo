@@ -62,10 +62,10 @@ class Server < Sinatra::Base
   end
 
   def jobs
-    @jobs = @@worker_pool.job_list.to_a
+    @@worker_pool.job_list.to_a
   end
 
   def results
-    @results = @@worker_pool.results_hash
+    @@worker_pool.results_hash
   end
 end
