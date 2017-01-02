@@ -1,6 +1,3 @@
-require 'thread'
-require 'set'
-
 class JobWorkerPool
   attr_reader :worker_count,
               :job_queue,

@@ -1,6 +1,3 @@
-require 'set'
-require 'thread'
-
 class PrimeChecker
   @@primes = SortedSet.new([2, 3])
 
