@@ -25,7 +25,7 @@ class JobWorkerPool
         begin
           thread_entry
         rescue StandardError => ex
-          puts "Background thread faild with #{ex.inspect}"
+          puts "Background thread failed with #{ex.inspect}"
         end
       end
     end

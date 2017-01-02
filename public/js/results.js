@@ -17,7 +17,7 @@ function pollRefresh() {
 function render(data, status) {
   drawResultTable(data.results);
   drawJobsTable(data.jobs);
-  $("#prime").text(data.max_prime)
+  $("#prime").text(data.max_prime);
 }
 
 function createTable(headers, rows) {
