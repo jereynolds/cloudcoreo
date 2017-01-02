@@ -15,8 +15,6 @@ class EulerPrimeJob
       :location => location,
       :length => length
     }
-
-    validate
   end
 
   def execute
@@ -42,16 +40,10 @@ class EulerPrimeJob
   end
 
   def valid?
-    @valid
+    !@location.nil? && !@length.nil?
   end
 
   def completed?
     @completed
-  end
-
-  private
-
-  def validate
-    @valid = !@location.nil? && !@length.nil?
   end
 end
