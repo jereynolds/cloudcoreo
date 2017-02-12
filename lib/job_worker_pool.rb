@@ -26,6 +26,7 @@ class JobWorkerPool
           thread_entry
         rescue StandardError => ex
           puts "Background thread failed with #{ex.inspect}"
+          puts "#{ex.backtrace}"
         end
       end
     end

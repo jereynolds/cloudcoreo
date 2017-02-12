@@ -18,6 +18,7 @@ function render(data, status) {
   drawResultTable(data.results);
   drawJobsTable(data.jobs);
   $("#prime").text(data.max_prime);
+  $("#e-string").text(data.e_string);
 }
 
 function createTable(headers, rows) {

@@ -38,6 +38,19 @@ class EulerCalc
     @@digits
   end
 
+  def e_string
+    return "" unless digits.length > 0
+    return digits.first.to_s unless digits.length > 1
+
+    str = "#{digits.first}."
+
+    digits[1..-1].each do |d|
+      str += d.to_s
+    end
+
+    str
+  end
+
   private
 
   # Run one iteration of the spigot algorithm

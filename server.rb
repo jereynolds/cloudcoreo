@@ -42,7 +42,12 @@ class Server < Sinatra::Base
   get '/status.json' do
     content_type :json
 
-    { :jobs => jobs, :results => results, :max_prime => max_prime }.to_json
+    {
+      jobs: jobs,
+      results: results,
+      max_prime: max_prime,
+      e_string: e_string
+    }.to_json
   end
 
   private
@@ -67,5 +72,9 @@ class Server < Sinatra::Base
 
   def results
     @@worker_pool.results_hash
+  end
+
+  def e_string
+    digits = EulerCalc.new.e_string
   end
 end
