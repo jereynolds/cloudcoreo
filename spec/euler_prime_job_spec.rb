@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RESULT_1 = {
   :length => 1,
   :location => 1,

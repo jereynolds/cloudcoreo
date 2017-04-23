@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe PrimeChecker do
   describe "#check" do
     before do
