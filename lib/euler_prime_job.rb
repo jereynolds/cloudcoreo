@@ -25,10 +25,10 @@ class EulerPrimeJob
     candidate = -1
 
     loop do
-      candidate = @euler.substring(current_position, @length)
+      candidate = @euler.substring(current_position, length)
       primes_found += 1 if @pc.check(candidate)
 
-      break if primes_found == @location
+      break if primes_found == location
 
       current_position += 1
     end
@@ -40,7 +40,7 @@ class EulerPrimeJob
   end
 
   def valid?
-    !@location.nil? && !@length.nil?
+    !location.nil? && !length.nil?
   end
 
   def completed?

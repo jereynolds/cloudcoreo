@@ -54,8 +54,8 @@ class EulerCalc
   private
 
   # Run one iteration of the spigot algorithm
-  # This may not produce a digit (precision can increase without the lower and upper
-  # bounds converging for the next digit)
+  # This may not produce a digit (precision can increase without
+  # the lower and upper bounds converging for the next digit)
   def calc
     @@state_lock.synchronize do
       @@state = @@state * transformation(@@iteration)
